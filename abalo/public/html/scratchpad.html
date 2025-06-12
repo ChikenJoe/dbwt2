@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset ="UTF-8">
+        <title>Scratchpad</title>
+        <script src ="../js/vue.global.js"></script>
+    </head>
+<body>
+    <div id ="app">
+        <click-counter></click-counter><br>
+        <click-counter></click-counter><br>
+        <click-counter></click-counter>
+    </div>
+</body>
+<script type="module">
+    import ClickCounter from '../js/vue_counter.js';
+    let vm = Vue.createApp({
+        components:{
+            ClickCounter
+        }
+    }).mount('#app');
+</script>
+</html>

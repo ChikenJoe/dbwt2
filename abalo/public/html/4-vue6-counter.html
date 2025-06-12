@@ -1,0 +1,30 @@
+<!--
+das bei einem Klick auf eine Schaltfläche eine
+dargestellte Zahl um eins inkrementiert.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Vue - Counter</title>
+    <script src="../js/vue.global.js"></script>
+</head>
+<body>
+<div id="counter">
+    <button @click="incCounter">{{ count }}</button>
+</div>
+</body>
+<script>
+    let vm = Vue.createApp({
+        data() {
+            return {
+                count: 0
+            }
+        },
+        methods:{
+            incCounter(){ ++this.count; }
+        }
+    }).mount('#counter');
+</script>
+</html>

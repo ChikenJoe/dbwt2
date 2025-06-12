@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<script>
+			"use strict";
+			let arr = ['erstes', 'zweites', 3, 4];
+			/*
+				Iteration methods
+			*/
+			console.log("forLoop");
+			
+			for (let i = 0; i < arr.length; ++i){
+				console.log(i + " => " + arr[i]);
+			}
+			
+			console.log("");
+			console.log("forEach");
+			
+			arr.forEach(function(value, index){
+				console.log(index + " => " + value);
+			});
+			
+			console.log("");
+			console.log("for el of arr");
+			
+			let i = 0;
+			for(const el of arr){
+				console.log(i++ +  " => " + el);
+			}
+			
+			/*
+				Array modification:
+					- Fügen Sie dem Array Elemente hinzu. 
+					  Entfernen Sie das letzte Element.
+					- Verändern Sie das Element an der 2. Position. 
+					- Geben Sie das Array nach jeder
+					  Operation auf der Konsole aus.
+			*/
+			console.log("");
+			console.log("Push 5");
+			arr.push(5);
+			arr.forEach(function(value, index){
+				console.log(index + " => " + value);
+			});
+			console.log("");
+			
+			console.log("Push 6");
+			arr.push(6);
+			arr.forEach(function(value, index){
+				console.log(index + " => " + value);
+			});
+			console.log("");
+			
+			console.log("Pop");
+			arr.pop();
+			
+			arr.forEach(function(value, index){
+				console.log(index + " => " + value);
+			});
+			console.log("");
+			
+			console.log("modifiy 2nd entry");
+			arr[1] = 7;
+			arr.forEach(function(value, index){
+				console.log(index + " => " + value);
+			});
+			
+			/*
+				Verwenden Sie die Funktionen 
+					length
+					sort
+					find
+					filter
+					map
+					slice 
+				an kurzen Beispielen.
+			*/
+			console.log("");
+			console.log("Length of Array: " + arr.length);
+			
+			console.log("");
+			console.log("Array sort");
+			arr.sort(function(a,b){return a-b;});
+			arr.forEach(function(value, index){
+				console.log(index + " => " + value);
+			});
+			
+			console.log("");
+			console.log("Find value 5: " + arr.find(value => value == 5));
+			
+			console.log("");
+			console.log("Filtered out 5");
+			let filteredArr = arr.filter(function(e){return e != 5;});
+			filteredArr.forEach(function(value, index){
+				console.log(index + " => " + value);
+			});
+			
+			console.log("");
+			console.log("New mapping");
+			let mappedArr = arr.map(function(x){
+				if (typeof x === 'number'){
+					return x * 2;
+				}
+				else if(typeof x === 'string'){
+					return x + "concat";
+				}
+			});
+			mappedArr.forEach(function(value, index){
+				console.log(index + " => " + value);
+			});
+			
+			console.log("");
+			console.log("Sliced Array from index 2 to 3");
+			let slicedArray = arr.slice(2,3);
+			slicedArray.forEach(function(value, index){
+				console.log(index + " => " + value);
+			});
+			
+		</script>
+	</body>
+</html>

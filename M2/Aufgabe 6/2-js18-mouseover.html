@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<body>
+	<div id = "hover" style = "width: 200 px; height: 80px; background-color: white"></div>
+		<script>
+			"use strict";
+			let hover = document.getElementById('hover');
+			hover.addEventListener('mouseenter', () => { 
+				hover.style.backgroundColor = 'green';
+			});
+			hover.addEventListener('mouseleave', () => { 
+				hover.style.backgroundColor = 'white';
+			});
+		</script>
+	</body>
+</html>

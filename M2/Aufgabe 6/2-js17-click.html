@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<body>
+	<div id = "colorBox" style="width: 200px; height: 200px; background-color: red;"></div>
+	<button id ="colorButton">FarbToggle</button>
+		<script>
+			"use strict";
+			const colorBox = document.getElementById('colorBox');
+			const colorButton = document.getElementById('colorButton');
+			let colors = ['red', 'yellow', 'green'];
+			let index = 0;
+			
+			colorButton.addEventListener('click', () => {
+				index = (index + 1) % colors.length;
+				colorBox.style.backgroundColor = colors[index];
+			});
+		</script>
+	</div>
+	</body>
+</html>

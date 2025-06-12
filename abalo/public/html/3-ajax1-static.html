@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <title>AJAX Beispiel</title>
+    <script>
+        function loadMessage(){
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', '../static/message.json');
+            xhr.onload = function (){
+                if (xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    document.getElementById('message').innerText = response.message;
+                }
+            };
+            xhr.send();
+        }
+        window.onload = loadMessage;
+    </script>
+</head>
+<body>
+    <h1>Nachricht:</h1>
+    <div id="message"></div>
+</body>
+</html>

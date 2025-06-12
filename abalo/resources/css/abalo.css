@@ -1,0 +1,112 @@
+/* Main grid layout */
+
+.wrapper{
+    display: grid;
+    grid-template-rows: auto auto auto;
+}
+
+.middle-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    margin-top: 100px;
+}
+
+#top{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    position: fixed;
+    width: 100%;
+}
+
+#left, #top, #right{
+    background-color: #a1a09a;
+}
+
+#left, #right, #middle{
+    text-align:center;
+    justify-content:center;
+}
+
+#footer {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+    background-color: #a1a09a;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+/*  Add article form layout*/
+#articleform {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+#articleform fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+#articleform legend {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#articleform div {
+    margin-bottom: 10px;
+}
+
+#articleform label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#articleform input, #articleform textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 1em;
+}
+
+#articleform textarea {
+    height: 80px;
+    resize: vertical;
+}
+
+#articleform button {
+    padding: 10px 15px;
+    font-size: 1em;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#articleform button:hover {
+    background-color: #0056b3;
+}
+
+#articleform .feedback {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #dff0d8;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+    border-radius: 3px;
+}
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<div id = 'form'></div>
+	</body>
+	<script>
+			"use strict";
+			function createForm(){
+				const form = document.createElement('form');
+				
+				const inputName = document.createElement('input');
+				const dropdownFood = document.createElement('select');
+				const labelName = document.createElement('label');
+				const labelFood = document.createElement('label');
+				
+				const foodOptionOne = document.createElement('option');
+				foodOptionOne.setAttribute('value', 'Salmon');
+				foodOptionOne.textContent = 'Salmon';
+				
+				const foodOptionTwo = document.createElement('option');
+				foodOptionTwo.setAttribute('value', 'Steak');
+				foodOptionTwo.textContent = 'Steak';
+				dropdownFood.appendChild(foodOptionOne);
+				dropdownFood.appendChild(foodOptionTwo);
+				
+				inputName.setAttribute('name', 'name');
+				labelName.setAttribute('for', 'name');
+				
+				dropdownFood.setAttribute('name', 'food');
+				labelFood.setAttribute('for', 'food');
+				
+				labelName.textContent = 'Name: ';
+				labelFood.textContent = 'Choose Food: ';
+				
+				form.appendChild(labelName);
+				form.appendChild(inputName);
+				form.appendChild(document.createElement('br'));
+				form.appendChild(labelFood);
+				form.appendChild(dropdownFood);
+				form.appendChild(document.createElement('br'));
+				
+				document.getElementById('form').appendChild(form);
+			}
+			
+			createForm();
+	</script>
+</html>

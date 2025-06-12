@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "UTF-8">
+    <title>Vue - Hallo Welt</title>
+    <script src = "../js/vue.global.js"></script>
+</head>
+<body>
+<div id="articles">
+    <table border="1">
+        <thead>
+            <td><b>Article</b></td>
+            <td><b>Price</b></td>
+        </thead>
+        <tr v-for="article in articles">
+            <td>{{ article.name }}</td>
+            <td>{{ (article.price/100).toFixed(2) }}€</td>
+        </tr>
+    </table>
+    <button @click="addArticle">Artikel hinzufügen</button>
+</div>
+<script>
+    let appdata = {
+        articles:[
+            { name: "Reifen", price: 8290 },
+            { name: "Antenne drehbar. Leicht geknickt", price: 1400 },
+            { name: "Opel Kadett C 1992 - wie neu", price: 150000 }
+        ]
+    };
+    let vm = Vue.createApp({
+        data(){
+            return appdata;
+        },
+        methods: {
+            addArticle(){
+                this.articles.push({name: "Radio", price: 4500});
+            }
+        }
+    }).mount('#articles');
+</script>
+</body>
+</html>

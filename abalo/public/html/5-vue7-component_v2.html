@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>First component</title>
+    <script src = "../js/vue.global.js"></script>
+</head>
+<body>
+    <div id = "app">
+        <click-manip v-bind:count = "count" v-on:update:count = "count = $event"></click-manip>
+        <p>{{ count }}</p>
+    </div>
+</body>
+<script type="module">
+    import ClickManip from '../js/5-vue7-component_v2.js';
+
+    let vm = Vue.createApp({
+        data() {
+            return{
+                count: 1
+            }
+        },
+        components:{
+            ClickManip
+        }
+    }).mount('#app');
+</script>
+</html>

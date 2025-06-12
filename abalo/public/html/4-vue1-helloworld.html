@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "UTF-8">
+    <title>Vue - Hallo Welt</title>
+    <script src = "../js/vue.global.js"></script>
+</head>
+<body>
+    <div id="hw_app">
+        {{ msg }}<br>
+        {{ msg.toLowerCase()}}<br>
+        {{ msg.toUpperCase()}}
+    </div>
+    <script>
+        let appdata = {
+            msg: 'Hello World!'
+        };
+        let vm = Vue.createApp({
+            data(){
+                return appdata;
+            }
+        }).mount('#hw_app');
+    </script>
+</body>
+</html>

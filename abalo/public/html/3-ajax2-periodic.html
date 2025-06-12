@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <script>
+
+        const xhr = new XMLHttpRequest();
+        window.setInterval(function(){
+            xhr.open('GET', '../static/message.json');
+            xhr.onload = function (){
+                if (xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    document.getElementById('message').innerText = response.message;
+                }
+            };
+            xhr.send();
+        }, 3000);
+
+    </script>
+    <body>
+        <div id="message"></div>
+    </body>
+</html>

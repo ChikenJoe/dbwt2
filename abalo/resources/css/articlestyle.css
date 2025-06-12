@@ -1,0 +1,33 @@
+
+nav ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+nav > ul > li {
+    display: inline-block;
+    margin-right: 20px;
+    position: relative;
+}
+
+nav ul li ul {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding-left: 10px;
+}
+
+nav li {
+    padding: 5px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+nav li ul li {
+    display: block;
+}

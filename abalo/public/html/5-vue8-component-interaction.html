@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Component interaction</title>
+    <script src = "../js/vue.global.js"></script>
+</head>
+<body>
+    <div id ="app">
+        <component-a></component-a>
+    </div>
+</body>
+<script type="module">
+    import ComponentA from '../js/5-vue8-component_A.js';
+
+    /*
+    let vm = Vue.createApp({
+        components:{
+            ComponentA
+        }
+    }).mount('#app');
+    */
+     let vm = Vue.createApp(ComponentA);
+     vm.mount('#app');
+</script>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Component</title>
+    <script src = "../js/vue.global.js"></script>
+</head>
+<body>
+    <div id ="app">
+        <click-manip></click-manip><br>
+    </div>
+</body>
+<script type ="module">
+    import ClickManip from '../js/5-vue7-component.js'
+
+    let vm = Vue.createApp({
+        components:{
+            ClickManip
+        }
+    }).mount('#app');
+
+</script>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+	<body>
+		<h4>Headline</h4>
+		<p id = "id1"></p>
+		<p class = "class1"></p>
+		<p name = "name1"></p>
+	</body>
+	<script>
+		"use strict";
+		document.getElementById("id1").innerHTML = "ByID";
+		document.getElementsByClassName("class1")[0].innerHTML = "ByClass";
+		document.getElementsByName("name1")[0].innerHTML = "ByName";
+		let ptag = document.getElementsByTagName("p");
+		Array.from(ptag).forEach(function(value, index) {
+			value.style.color = "red";
+		});
+	</script>
+</html>

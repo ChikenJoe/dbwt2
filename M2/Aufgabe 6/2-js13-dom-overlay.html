@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<div id = "overlay"></div>
+	</body>
+	<script>
+		"use strict";
+		function createOverlay(){
+			const overlay = document.getElementById('overlay');
+			overlay.style.position = 'absolute';
+			overlay.style.bottom = '0px';
+			overlay.style.width = '100%';
+			overlay.style.height = '50px';
+			overlay.style.textAlign = 'center';
+			overlay.style.backgroundColor = 'yellow';
+			overlay.innerHTML = 'Hello Overlay';
+		}
+		createOverlay();
+	</script>
+</html>

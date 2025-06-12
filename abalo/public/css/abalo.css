@@ -1,0 +1,17 @@
+#top{
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    height: 100px;
+}
+
+#top, #left, #right{
+    background-color: #a1a09a;
+}
+
+#container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr; /* Left and Right are same size */
+    height: 60vh;
+}
+

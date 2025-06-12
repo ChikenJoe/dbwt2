@@ -1,0 +1,29 @@
+<!--
+    das ein HTML-formatierten Text "<b>Vielen
+    Dank</b>, für Ihren Einkauf bei <i>Abalo</i>" ausgibt
+-->
+<!DOCTYPE html>
+<htmt>
+    <head>
+        <title>Vue - HTML Encoding</title>
+        <meta charset="UTF-8">
+        <script src ="../js/vue.global.js"></script>
+    </head>
+    <body>
+    <div id = "app">
+        <div v-html="htmlvar"></div>
+    </div>
+
+    </body>
+    <script>
+        let appdata={
+            htmlvar: '<b>Vielen Dank</b>, für Ihren Einkauf bei <i>Abalo</i>'
+        };
+        let vm = Vue.createApp({
+            data(){
+                return appdata
+            },
+            methods:{}
+        }).mount('#app');
+    </script>
+</htmt>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<script>
+			"use strict";
+			let CarJson = {
+				name: 'Mitsubishi',
+				type: 'Lancer GLX',
+				getName: function(){ return this.name; },
+				getType: function(){ return this.type; },
+				setName: function(name){ this.name = name; },
+				setType: function(type){ this.type = type; },
+				writeToConsole: function(){
+					let string = 'name=' + this.name + ',type=' + this.type;
+					console.log(string);
+				}
+			};
+			
+			function CarFunction (name, type){
+				this.name = name;
+				this.type = type;
+				
+				this.getName = function(){ return this.name; }
+				this.getType = function(){ return this.type; }
+				this.setName = function(name){ this.name = name; }
+				this.setType = function(type){ this.type = type; }
+				this.writeToConsole = function(){
+					let string = 'name=' + this.name + ',type=' + this.type;
+					console.log(string);
+				}
+			}
+			
+			class CarClass{
+				constructor(name, type){
+					this.name = name;
+					this.type = type;
+				}
+				getName(){return this.name;}
+				getType(){return this.type;}
+				setName(name){ this.name = name; }
+				setType(type){ this.type = type; }
+				writeToConsole(){
+					let string = 'name=' + this.name + ',type=' + this.type;
+					console.log(string);
+				}
+			}
+			
+			let carOne = Object.create(CarJson);
+			let carTwo = new CarFunction('Lamborghini', 'Murcielago');
+			let carThree = new CarClass('Ford', 'Mustang');
+			
+			carOne.writeToConsole();
+			carTwo.writeToConsole();
+			carThree.writeToConsole();
+			
+			console.log('Objects:');
+			console.log(carOne);
+			console.log(carTwo);
+			console.log(carThree);
+			
+		</script>
+	</body>
+</html>

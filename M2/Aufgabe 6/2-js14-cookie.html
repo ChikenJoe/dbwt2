@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<body>
+	</body>
+	<script>
+		"use strict";
+		function isCookieSet(cookieName){
+			const cookies = document.cookie.split(';');
+			for (let cookie of cookies){
+				const trimmedCookie = cookie.trim();
+				if (trimmedCookie.startsWith(cookieName + '=')){
+					return true;
+				}
+			}
+			return false;
+		}
+		
+		function modifyCookie(cookieName){
+			const cookies = document.cookie.split(';');
+			for (let cookie of cookies){
+				const [key, value] = cookie.trim().split('=');
+				if (key == cookieName){
+					let newvalue = parseInt(value) + 1;
+					document.cookie = cookieName + '=' + newvalue;
+					break;
+				}
+			}
+		}
+		
+		if (isCookieSet('counter')){
+			modifyCookie('counter');
+		}else{
+			document.cookie = 'counter' + '=' + 0;
+		}
+	</script>
+</html>

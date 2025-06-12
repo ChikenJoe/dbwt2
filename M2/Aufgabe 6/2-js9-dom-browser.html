@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<script>
+			"use strict";
+			let browsername = navigator.userAgent;
+			let slashindex;
+			for (let i = 0; i < browsername.length;++i){
+				if (browsername.charAt(i) == "/"){
+					slashindex = i;
+					break;
+				}
+			}
+			
+			browsername = browsername.substring(0, slashindex);
+			alert(browsername);
+			alert(navigator.userAgent);
+		</script>
+	</body>
+</html>

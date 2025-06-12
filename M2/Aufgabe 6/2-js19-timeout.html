@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<div id = 'timedToggle' style = 'width: 200px; height: 80px;'></div>
+		<script>
+			"use strict";
+			let togglewindow = document.getElementById('timedToggle');
+			let colorflag = false;
+			window.setInterval(function() {
+				if (colorflag){
+					togglewindow.style.backgroundColor = 'white';
+					colorflag = !colorflag;
+				}
+				else{
+					togglewindow.style.backgroundColor = 'red';
+					colorflag = !colorflag;
+				}
+				
+			}, 1000);
+			
+		</script>
+	</body>
+</html>

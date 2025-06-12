@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "UTF-8">
+    <title>Vue - Boolean</title>
+    <script src = "../js/vue.global.js"></script>
+</head>
+<body>
+<div id="serverdown">
+    <p v-if ="serverdown">Der Webserver ist nicht erreichbar!</p>
+    <p v-else>Der Webserver ist erreichbar</p>
+    <button @click="flipBool">Flip Bool!</button>
+</div>
+<script>
+    let appdata= {
+        serverdown: false
+    }
+
+    let vm = Vue.createApp({
+        data(){
+            return appdata;
+        },
+        methods:{
+            //  Reference with "This"
+            flipBool(){ this.serverdown = !this.serverdown; }
+        }
+    }).mount('#serverdown');
+</script>
+</body>
+</html>
