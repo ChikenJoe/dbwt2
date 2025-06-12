@@ -18,7 +18,8 @@ import SiteFooter from '../vue/sitefooter.vue'
 import Cart from '../vue/cart.vue';
 import ArticleSearch from '../vue/articlesearch.vue';
 import ArticleOverview from '../vue/articleoverview.vue';
-
+import VueFloatMenu from 'vue-float-menu';
+import 'vue-float-menu/style.css';
 window.ListObject = ListObject;
 window.items = items;
 window.data = data;
@@ -41,6 +42,8 @@ const oldsiteApp = createApp({
 */
 
 const newsiteApp = createApp({
+
+
     components:{
         SiteHeader,
         SiteBody,
@@ -51,10 +54,28 @@ const newsiteApp = createApp({
         return {
             page: 1,
             articles:[],
-            shoppingcartitems:[]
+            shoppingcartitems:[],
+            items: [
+                { name: 'Home' },
+                { name: 'Kategorien' },
+                {name: 'Verkaufen' },
+                {name: 'Unternehmen',
+                    subMenu: {
+                        name: 'edit-items',
+                        items: [{name: 'Philosophie'}, {name: 'Karriere'}],
+                    },
+                }
+            ]
+
+
         }
     },
     created: function(){
+
+
+        const handleSelection = (selectedItem) => {
+            console.log('Selected:', selectedItem);
+        };
 
         let xhr_articles = new XMLHttpRequest();
         xhr_articles.open('GET', '/api/articles');
@@ -82,6 +103,8 @@ const newsiteApp = createApp({
             }
         }
         xhr_shoppingcart.send();
+
+
     },
     methods:{
         refresh(){
@@ -118,8 +141,18 @@ const newsiteApp = createApp({
                 </div>
             </div>
             <div id="footer"><site-footer v-on:update:page="page = $event"/></div>
+
+
+            <!-- Float Menu -->
+            <float-menu :buttons="buttons" position="right" :menu-data="items">
+                <template #toggle>
+                    
+
+                </template>
+            </float-menu>
         </div>`
 });
+newsiteApp.use(VueFloatMenu);
 newsiteApp.mount('#app');
 
 
