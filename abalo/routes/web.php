@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AbTestDataController;
 use Illuminate\Support\Facades\Route;
+use App\Events\MessageEvent;
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,4 +30,12 @@ Route::get('/newsite', [AbTestDataController::class, 'getArticleData2'] );
 //user sollen noch nicht generiert werden, so wie ich es verstanden habe
 
 
-
+//send msg http://127.0.0.1:8000/send/Hallo
+//Route::get('/send/{msg}', function (string $msg) {
+//    broadcast(new MessageEvent($msg));
+//    return "Broadcasted: {$msg}";
+//});
+Route::get('/send/{message}/{id}', function (string $message, string $id) {
+    broadcast(new MessageEvent($message, $id));
+    return "Sent: {$message} (ID: {$id})";
+});

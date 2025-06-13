@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <title>Reverb WebSocket Test</title>
+</head>
+<body>
+<!-- 1) Offizielles Pusher-CDN -->
+<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+<!-- 2) Laravel Echo (nach Pusher!) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/laravel-echo/1.19.0/echo.iife.min.js"></script>
+
+<script>
+
+    Pusher.logToConsole = true;
+
+    const REVERB_KEY  = "10fir4sryvksuxst2wus";
+    const REVERB_HOST = "127.0.0.1";
+    const REVERB_PORT = 8080;
+
+    window.Echo = new Echo({
+        broadcaster: 'pusher',
+        key: REVERB_KEY,
+        wsHost: REVERB_HOST,
+        wsPort: REVERB_PORT,
+        wssPort: REVERB_PORT,
+        forceTLS: false,
+        disableStats: true,
+        enabledTransports: ['ws','wss'],
+    });
+
+    Echo.channel('chat')
+        .listen('MessageEvent', e => {
+            console.log("Message received: " + e.message);
+        });
+</script>
+</body>
+</html>
