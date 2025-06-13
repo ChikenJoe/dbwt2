@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\MaintenanceEvent;
 use App\Http\Controllers\AbTestDataController;
 use Illuminate\Support\Facades\Route;
 use App\Events\MessageEvent;
@@ -39,3 +40,11 @@ Route::get('/send/{message}/{id}', function (string $message, string $id) {
     broadcast(new MessageEvent($message, $id));
     return "Sent: {$message} (ID: {$id})";
 });
+
+
+//send alert http://127.0.0.1:8000/broadcast-maintenance
+Route::get('/broadcast-maintenance', function () {
+    broadcast(new MaintenanceEvent());
+    return 'Maintenance-Event wurde gesendet.';
+});
+

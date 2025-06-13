@@ -8,6 +8,7 @@
 
 
 </head>
+
 <body class ="modal-active">
 
     <div id="app">
