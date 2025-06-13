@@ -164,4 +164,8 @@ if (document.getElementById('addarticle')) {
         .mount('#addarticle');
 }
 
+window.Echo.channel('maintenance')
+    .listen('.MaintenanceEvent', (e) => {
 
+        alert(e.message);
+    });
