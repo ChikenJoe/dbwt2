@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\ArticleSoldEvent;
 use App\Events\MaintenanceEvent;
 use App\Http\Controllers\AbTestDataController;
 use Illuminate\Support\Facades\Route;
@@ -48,3 +49,9 @@ Route::get('/broadcast-maintenance', function () {
     return 'Maintenance-Event wurde gesendet.';
 });
 
+//send alert http://127.0.0.1:8000/test-sold
+Route::get('/test-sold', function () {
+    // simuliert: userId = 1, Artikelname = "Test"
+    broadcast(new ArticleSoldEvent(1, 'Test'));
+    return 'Event an user.1 geschickt';
+});

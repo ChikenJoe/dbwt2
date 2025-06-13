@@ -169,3 +169,10 @@ window.Echo.channel('maintenance')
 
         alert(e.message);
     });
+
+
+
+window.Echo.channel('user.1')
+    .listen('ArticleSoldEvent', e => {
+        alert(e.message);
+    });

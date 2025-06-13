@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\ArticleSoldEvent;
 use App\Http\Controllers\ApiArticles;
 use App\Http\Controllers\ApiShoppingCart;
 use App\Http\Controllers\ApiShoppingCartItems;
@@ -20,3 +21,4 @@ Route::post('/shoppingcart', [ApiShoppingCart::class, 'store']);
 Route::delete('/shoppingcart/{shoppingcartid}/articles/{articleId}', [ApiShoppingCart::class, 'destroy']);
 
 Route::get('/shoppingcartitems', [ApiShoppingCartItems::class, 'index']);
+
