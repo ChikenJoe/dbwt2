@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Reverb Connect</title>
+</head>
+<body>
+<script>
+
+    const host = '127.0.0.1';
+    const port = 8080;
+    const key  = '10fir4sryvksuxst2wus';
+
+
+    const url = `ws://${host}:${port}/app/${key}`;
+
+
+    const ws = new WebSocket(url);
+    ws.onopen = () => {
+        console.log('connected');
+    };
+    ws.onclose = () => console.log('disconnected');
+    ws.onerror = e => console.log('error', e);
+</script>
+</body>
+</html>
