@@ -38,13 +38,7 @@ const handleSelection = (selectedItem) => {
 </script>
 
 <template>
-    <template>
-        <float-menu position="top left" :dimension="50" :menu-data="items" @select="handleSelection">
-            <template #icon>
-                <BoxIcon />
-            </template>
-        </float-menu>
-    </template>
+
     <div v-if="page === 1" >
         <article-overview v-bind:shoppingcartitems="shoppingcartitems"
                           v-bind:articles="articles"
