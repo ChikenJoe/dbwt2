@@ -1,49 +1,88 @@
 <template>
-    <div id='articleform'>
-        <form @submit.prevent="submitArticle">
-            <fieldset>
-                <legend>Neuen Artikel anlegen</legend>
-                <div>
-                    <label for="name">Artikelname:</label>
-                    <input type="text" id="name" v-model="name" placeholder="Artikelname">
+    <div class="article-form">
+        <form class="article-form__form" @submit.prevent="submitArticle">
+            <fieldset class="article-form__fieldset">
+                <legend class="article-form__legend">Neuen Artikel anlegen</legend>
+
+                <div class="article-form__field article-form__field--required">
+                    <label class="article-form__label" for="name">Artikelname:</label>
+                    <input
+                        class="article-form__input"
+                        type="text"
+                        id="name"
+                        v-model="name"
+                        placeholder="Artikelname"
+                    />
                 </div>
-                <div>
-                    <label for="price">Preis:</label>
-                    <input type="number" id="price" v-model.number="price" placeholder="Preis">
+
+                <div class="article-form__field">
+                    <label class="article-form__label" for="price">Preis:</label>
+                    <input
+                        class="article-form__input"
+                        type="number"
+                        id="price"
+                        v-model.number="price"
+                        placeholder="Preis"
+                    />
                 </div>
-                <div>
-                    <label for="description">Beschreibung:</label>
-                    <textarea id="description" v-model="description" placeholder="Beschreibung"></textarea>
+
+                <div class="article-form__field">
+                    <label class="article-form__label" for="description">Beschreibung:</label>
+                    <textarea
+                        class="article-form__textarea"
+                        id="description"
+                        v-model="description"
+                        placeholder="Beschreibung"
+                    ></textarea>
                 </div>
-                <div>
-                    <button type="submit">Speichern</button>
+
+                <div class="article-form__field">
+                    <button
+                        class="article-form__button"
+                        type="submit"
+                        :disabled="!formValid"
+                        :class="{ 'article-form__button--disabled': !formValid }"
+                    >
+                        Speichern
+                    </button>
                 </div>
             </fieldset>
         </form>
-        <div v-if="feedback" class="feedback">{{ feedback }}</div>
+
+        <div
+            v-if="feedback"
+            class="article-form__feedback"
+            :class="{ 'article-form__feedback--error': feedbackError }"
+        >
+            {{ feedback }}
+        </div>
     </div>
 </template>
 
 <script>
-export default{
-    data: function() {
+export default {
+    data() {
         return {
             name: "",
             price: null,
             description: "",
-            feedback: ""
+            feedback: "",
+            feedbackError: false,
         };
+    },
+    computed: {
+        formValid() {
+            return this.name.trim() !== "" && this.price > 0;
+        },
     },
     methods: {
         submitArticle() {
             this.feedback = "";
+            this.feedbackError = false;
 
-            if (!this.name.trim()) {
-                this.feedback = "Der Artikelname darf nicht leer sein.";
-                return;
-            }
-            if (!this.price || this.price <= 0) {
-                this.feedback = "Der Preis muss eine Zahl sein und größer als 0.";
+            if (!this.formValid) {
+                this.feedback = "Bitte füllen Sie alle Felder korrekt aus.";
+                this.feedbackError = true;
                 return;
             }
 
@@ -62,30 +101,124 @@ export default{
                     let responseData = {};
                     try {
                         responseData = JSON.parse(xhr.responseText);
-                    } catch (e) {
-                    // In case parsing fails, fallback to an empty object
-                    }
+                    } catch (e) {}
                     this.feedback = responseData.message || "Artikel erfolgreich angelegt!";
-                    // Optionally, reset form fields
                     this.name = "";
                     this.price = null;
                     this.description = "";
                 } else {
                     this.feedback = "Fehler beim Absenden: " + xhr.statusText;
+                    this.feedbackError = true;
                 }
             };
             xhr.onerror = () => {
                 this.feedback = "Netzwerkfehler";
+                this.feedbackError = true;
             };
 
-            const data = JSON.stringify({
-                name: this.name,
-                price: this.price,
-                description: this.description
-            });
+            xhr.send(
+                JSON.stringify({ name: this.name, price: this.price, description: this.description })
+            );
+        },
+    },
+};
+</script>
 
-            xhr.send(data);
+<style lang="scss" scoped>
+
+
+$main-color: #3498db;
+$error-color: #e74c3c;
+$spacing: 0.5rem;
+$error-color: #e74c3c;
+$spacing: 0.5rem;
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+%centered {
+    @include flex-center;
+}
+
+.article-form {
+    @extend %centered;
+    flex-direction: column;
+    padding: $spacing * 2;
+
+    &__form {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    &__fieldset {
+        border: 1px solid $main-color;
+        padding: $spacing;
+    }
+
+    &__legend {
+        margin-bottom: $spacing;
+        font-weight: bold;
+    }
+
+    &__field {
+        margin-bottom: $spacing;
+        &--required {
+            label::after {
+                content: '*';
+                color: $error-color;
+                margin-left: 0.25rem;
+            }
+        }
+    }
+
+    &__label {
+        display: block;
+        margin-bottom: 0.25rem;
+    }
+
+    &__input,
+    &__textarea {
+        width: 100%;
+        padding: $spacing;
+        border: 1px solid $main-color;
+
+        &:focus {
+            border-color: darken($main-color, 10%);
+        }
+
+        &--error {
+            border-color: $error-color;
+        }
+    }
+
+    &__button {
+        @include flex-center;
+        padding: $spacing $spacing * 2;
+        background: $main-color;
+        color: #fff;
+        border: none;
+
+        &:disabled {
+            cursor: not-allowed;
+        }
+
+        &--disabled {
+            background: darken($main-color, 20%);
+        }
+    }
+
+    &__feedback {
+        margin-top: $spacing;
+
+
+        &--error {
+            color: $error-color;
         }
     }
 }
-</script>
+</style>

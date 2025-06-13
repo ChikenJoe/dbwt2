@@ -6,6 +6,7 @@
     <meta id ="csrf-token" name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
 </head>
+@vite('resources/js/app.js')
 <body class ="modal-active">
 <div id="app">
     <div class ="wrapper">

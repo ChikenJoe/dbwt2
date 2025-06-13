@@ -42,37 +42,111 @@ export default{
 </script>
 
 <template>
-    <div>
-        <input type="text" v-model="searchText" @input="onInput" placeholder="Artikelsuche..."/>
-        <ul v-if="articles.length">
-            <li v-for="article in articles" :key="article.id">
-                {{ article.ab_name }} – {{ (article.ab_price / 100).toFixed(2) }}€
+    <div class="article-search">
+        <!-- Block: article-search -->
+        <input
+            type="text"
+            v-model="searchText"
+            @input="onInput"
+            placeholder="Artikelsuche..."
+            class="article-search__input"
+        />
+
+        <ul
+            v-if="articles.length"
+            class="article-search__list"
+        >
+            <li
+                v-for="article in articles"
+                :key="article.id"
+                class="article-search__item"
+            >
+                <span class="article-search__name">{{ article.ab_name }}</span>
+                <span class="article-search__price">
+                    {{ (article.ab_price / 100).toFixed(2) }}€
+                </span>
             </li>
         </ul>
-        <p v-else-if="searchText.length >= 3">Keine Treffer gefunden.</p>
+
+        <p
+            v-else-if="searchText.length >= 3"
+            class="article-search__no-results"
+        >
+            Keine Treffer gefunden.
+        </p>
     </div>
 </template>
 
-<style scoped>
-input[type="text"]{
-  position:fixed;
-  right:65%;
-  top:5.5%;
+<style scoped lang="scss">
+// Variablen
+$input-padding: 0.5rem 1rem;
+$input-border-width: 1px;
+$input-border-style: solid;
+$input-border-color: #ccc;
+$list-bg: #706f6c;
+$item-bg: #939393;
+$no-results-color: #ff6b6b;
+$transition-time: 0.2s;
+
+// Mixin
+@mixin transition($props...) {
+    transition: $props $transition-time ease;
 }
-ul{
-  position:fixed;
-  background-color: #706f6c;
-  left:10%;
-  top:10%;
+
+// Placeholder-Selektor
+%text-base {
+    font-family: Amiri, serif;
+    font-size: 1rem;
 }
-p{
-  position:fixed;
-  background-color: #706f6c;
-  left:10%;
-  top:10%;
-}
-li{
-  background-color: #e3e3e0;
-  margin: 2px;
+
+.article-search {
+    &__input {
+        @extend %text-base;
+        padding: $input-padding;
+        border: $input-border-width $input-border-style $input-border-color;
+        width: 100%;
+        max-width: 300px;
+        @include transition(border-color, box-shadow);
+
+        &:focus {
+            border-color: darken($input-border-color, 20%);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    &__list {
+        list-style: none;
+        margin: 0.5rem 0 0;
+        padding: 0;
+        background: $list-bg;
+        border-radius: 4px;
+    }
+
+    &__item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem;
+        background: $item-bg;
+        border-bottom: 1px solid darken($item-bg, 10%);
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    &__name {
+        @extend %text-base;
+    }
+
+    &__price {
+        @extend %text-base;
+        font-weight: bold;
+    }
+
+    &__no-results {
+        @extend %text-base;
+        color: $no-results-color;
+        margin-top: 0.5rem;
+    }
 }
 </style>

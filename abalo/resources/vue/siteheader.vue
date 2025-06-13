@@ -23,16 +23,21 @@ export default{
 </script>
 
 <template>
-    <div>
-        <article-search></article-search>
+    <div class="grid-container">
         <nav-menu v-bind:items="items"></nav-menu>
+        <div class="search">
+            <article-search></article-search>
+        </div>
     </div>
 </template>
 
 <style scoped>
-div{
-    display:flex;
-    grid-template-columns: 1fr 1fr;
+.grid-container {
+    display: grid;
+
+    grid-template-columns: 1fr 300px;
+    gap: 1rem;
 }
+
 
 </style>

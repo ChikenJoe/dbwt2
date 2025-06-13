@@ -16,6 +16,7 @@ import SiteHeader from '../vue/siteheader.vue';
 import SiteBody from '../vue/sitebody.vue';
 import SiteFooter from '../vue/sitefooter.vue'
 import Cart from '../vue/cart.vue';
+import ArticleForm from '../vue/articleform.vue';
 import ArticleSearch from '../vue/articlesearch.vue';
 import ArticleOverview from '../vue/articleoverview.vue';
 import VueFloatMenu from 'vue-float-menu';
@@ -48,7 +49,8 @@ const newsiteApp = createApp({
         SiteHeader,
         SiteBody,
         SiteFooter,
-        Cart
+        Cart,
+        ArticleForm
     },
     data: function(){
         return {
@@ -146,14 +148,20 @@ const newsiteApp = createApp({
             <!-- Float Menu -->
             <float-menu :buttons="buttons" position="right" :menu-data="items">
                 <template #toggle>
-                    
+
 
                 </template>
             </float-menu>
         </div>`
 });
-newsiteApp.use(VueFloatMenu);
-newsiteApp.mount('#app');
+if (document.getElementById('app') && window.location.pathname === '/newsite') {
+    newsiteApp.use(VueFloatMenu);
+    newsiteApp.mount('#app');
+}
 
+if (document.getElementById('addarticle')) {
+    createApp({ components: { ArticleForm } })
+        .mount('#addarticle');
+}
 
 
