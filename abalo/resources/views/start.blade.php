@@ -6,6 +6,7 @@
 @section('title', 'Welcome to Abalo!')
 
 @section('top')
+
     <div id="articlesearch"></div>
 @endsection
 

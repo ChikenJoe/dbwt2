@@ -22,3 +22,7 @@ window.Echo = new Echo({
     forceTLS: (import.meta.env.VITE_REVERB_SCHEME ?? 'https') === 'https',
     enabledTransports: ['ws', 'wss'],
 });
+
+axios.defaults.headers.common['X-CSRF-TOKEN'] =
+    document.head.querySelector('meta[name="csrf-token"]').content;
+window.axios = axios;

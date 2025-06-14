@@ -1,8 +1,10 @@
 <?php
 
+use App\Events\ArticleOfferedEvent;
 use App\Events\ArticleSoldEvent;
 use App\Events\MaintenanceEvent;
 use App\Http\Controllers\AbTestDataController;
+use App\Models\ab_articles;
 use Illuminate\Support\Facades\Route;
 use App\Events\MessageEvent;
 
@@ -47,6 +49,18 @@ Route::get('/send/{message}/{id}', function (string $message, string $id) {
 Route::get('/broadcast-maintenance', function () {
     broadcast(new MaintenanceEvent());
     return 'Maintenance-Event wurde gesendet.';
+});
+
+Route::post('/articles/{id}/offer', function ($id) {
+    // jetzt kannst du findOrFail nutzen:
+    $article = ab_articles::findOrFail($id);
+
+    broadcast(new ArticleOfferedEvent(
+        $article->id,
+        $article->ab_name
+    ));
+
+    return ['status' => 'ok'];
 });
 
 //send alert http://127.0.0.1:8000/test-sold

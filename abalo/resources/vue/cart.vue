@@ -1,5 +1,6 @@
 <script>
     export default{
+        emits: ['refresh'],
         props:['shoppingcartitems', 'articles'],
         methods: {
             removeArticle(id, event){
