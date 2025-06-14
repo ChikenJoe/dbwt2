@@ -18,5 +18,18 @@
             </template>
         </float-menu>
     </div>
+    <ul id="articles">
+        @foreach($articles as $a)
+            <li id="article-{{ $a->id }}">
+                <strong>{{ $a->ab_name }}</strong>
+
+                <button
+                    onclick="offerArticle({{ $a->id }}, '{{ addslashes($a->ab_name) }}')"
+                >
+                    Artikel jetzt als Angebot anbieten
+                </button>
+            </li>
+        @endforeach
+    </ul>
 </body>
 </html>

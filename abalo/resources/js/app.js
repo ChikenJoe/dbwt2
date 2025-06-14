@@ -146,7 +146,7 @@ const newsiteApp = createApp({
 
 
             <!-- Float Menu -->
-            <float-menu :buttons="buttons" position="right" :menu-data="items">
+            <float-menu  position="right" :menu-data="items">
                 <template #toggle>
 
 
@@ -176,3 +176,29 @@ window.Echo.channel('user.1')
     .listen('ArticleSoldEvent', e => {
         alert(e.message);
     });
+
+axios.defaults.headers.common['X-CSRF-TOKEN'] = document
+    .querySelector('meta[name="csrf-token"]')
+    .getAttribute('content');
+window.Echo.channel('articles')
+    .listen('.ArticleOffered', ({ articleId, articleName }) => {
+        const el = document.getElementById('article-' + articleId);
+        if (el) {
+            el.style.fontWeight = 'bold';
+            alert(
+                `Der Artikel ${articleName} wird nun günstiger angeboten! Greifen Sie schnell zu.`
+            );
+        }
+    });
+
+window.offerArticle = (id, name) => {
+    axios
+        .post(`/articles/${id}/offer`)
+        .then(() => {
+            alert(`Du hast deinen Artikel "${name}" jetzt als Angebot gelistet.`);
+        })
+        .catch((e) => {
+            console.error(e);
+            alert('Fehler beim Anbieten.');
+        });
+};
