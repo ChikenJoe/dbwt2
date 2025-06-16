@@ -17,4 +17,8 @@ class ab_articles extends Model
     public function image(){
         return $this->hasOne(ab_article_image::class, 'id', 'id');
     }
+
+    public function category(){
+        return $this->hasOne(ab_article_has_articlecategory::class, 'ab_article_id', 'id');
+    }
 }

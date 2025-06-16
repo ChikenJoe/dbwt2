@@ -2,6 +2,7 @@
 
 use App\Events\ArticleOfferedEvent;
 use App\Events\ArticleSoldEvent;
+use App\Http\Controllers\ApiArticleCategories;
 use App\Http\Controllers\ApiArticles;
 use App\Http\Controllers\ApiShoppingCart;
 use App\Http\Controllers\ApiShoppingCartItems;
@@ -23,4 +24,4 @@ Route::delete('/shoppingcart/{shoppingcartid}/articles/{articleId}', [ApiShoppin
 
 Route::get('/shoppingcartitems', [ApiShoppingCartItems::class, 'index']);
 
-
+Route::get('/categories', [ApiArticleCategories::class, 'index']);

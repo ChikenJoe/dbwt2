@@ -41,9 +41,14 @@ class ApiArticles extends Controller
     public function articles(Request $request){
 
         $search = isset($_GET['search']) ? $_GET['search'] : '';
+        $offset = isset($_GET['page']) ? $_GET['page'] : 0;
 
         if (!empty($search)) {
-            $articles = ab_articles::where('ab_name', 'ILIKE', '%' . $search . '%')->get();
+            $articles = ab_articles::where('ab_name', 'ILIKE', '%' . $search . '%')
+                ->with('category')
+                ->skip($offset * 2)
+                ->take(2)
+                ->get();
         } else {
             $articles = ab_articles::with('image')->get();
         }

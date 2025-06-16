@@ -14,4 +14,13 @@ class Ab_Article_Has_Articlecategory extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['ab_articlecategory_id', 'ab_article_id'];
 
+    public function article(){
+        /*parameters:
+            related model class
+            foreign key column name in related table
+            local key column name in current table
+        */
+        return $this->belongsTo(ab_articles::class, 'id', 'ab_article_id');
+    }
+
 }
